@@ -1,31 +1,39 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-//const dotenv = require("dotenv");
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+//Vihanga routes
+import userRoutes from "./routes/userRoutes.js";
+
 const app = express();
-require("dotenv").config();
-
-
-const PORT = process.env.PORT || 8070;
+dotenv.config();
 
 app.use(cors());
 app.use(bodyParser.json());
 
+const PORT = process.env.PORT || 8070;
 const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL, {
-    //useCreateIndex: true,
-    //useNewUrlParser: true,
-    //useUnifiedTopology: true,
-    //useFindAndModify: false,
+  //useCreateIndex: true,
+  //useNewUrlParser: true,
+  //useUnifiedTopology: true,
+  //useFindAndModify: false,
 });
 
 const connection = mongoose.connection;
 connection.once("open", () => {
-    console.log("Mongodb Connection success!");
-})
+  console.log("Mongodb Connection success!");
+});
+
+app.get("/", (req, res) => {
+  res.send("Api is working");
+});
+
+app.use("/user", userRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server is up and running on port number: ${PORT}`)
-})
+  console.log(`Server is up and running on port number: ${PORT}`);
+});

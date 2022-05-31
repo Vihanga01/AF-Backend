@@ -4,9 +4,14 @@ const StudentGroupModel = mongoose.Schema({
 
     students: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        required: false,
         ref:'user'
     }],
+
+    topic: {
+        type: String,
+        required: false
+    },
 
     supervisor: {
         type: mongoose.Schema.Types.ObjectId,
@@ -19,6 +24,11 @@ const StudentGroupModel = mongoose.Schema({
         required: false,
         ref: 'user'
     },
+
+    attachments:[{
+        type: String,
+        required: false,
+    }],
 
     panel: [{
         type: mongoose.Schema.Types.ObjectId,

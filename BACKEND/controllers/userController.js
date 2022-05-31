@@ -9,11 +9,13 @@ const authUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
+    console.log()
     res.json({
       _id: user._id,
       name: user.name,
       contactNo: user.contactNo,
       email: user.email,
+      role: user.role,
       token: generateToken(user._id),
     });
   } else {

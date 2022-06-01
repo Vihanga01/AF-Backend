@@ -6,8 +6,8 @@ const createStudentGroup = async(req, res) => {
         const studentGroupDetails = {
             students: req.body.students,
             topic: '',
-            supervisor: '',
-            co_supervisor: '',
+            supervisor: null,
+            co_supervisor: null,
             attachments: [],
             panel: []
         };
@@ -52,8 +52,8 @@ const registerTopic = async(req, res) => {
         const query = { "_id": req.params.id };
         const update = { 
             topic: req.body.topic,
-            supervisor: '',
-            co_supervisor: '',
+            supervisor: null,
+            co_supervisor: null,
             attachments: [],
             panel: []
          };

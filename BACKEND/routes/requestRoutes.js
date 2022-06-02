@@ -8,3 +8,5 @@ router.route('/').post(requestController.createRequest)
 router.route('/:id').delete(requestController.deleteRequest)
 
 router.route('/user/:id').get(requestController.getRequestsByUserID)
+
+export default router

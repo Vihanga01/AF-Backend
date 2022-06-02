@@ -140,7 +140,7 @@ const panelApproves = async(req, res) => {
 const getStudentGroupByUserID = async(req, res) => {
 
     if(req.params && req.params.id){
-        await Request.find({ "students": req.params.id }).populate("students").populate("supervisor").populate("co_supervisor")
+        await StudentGroup.find({ "students": req.params.id }).populate("students").populate("supervisor").populate("co_supervisor")
         .populate("attachments").populate("panel")
         .then( data => {
             res.status(200).send({ success: true, 'studentGroup': data })

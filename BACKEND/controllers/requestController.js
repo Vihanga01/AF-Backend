@@ -42,7 +42,7 @@ const deleteRequest = async(req, res) => {
 const getRequestsByUserID = async(req, res) => {
 
     if(req.params && req.params.id){
-        await Request.find({ "recipient": req.params.id })
+        await Request.find({ "recipient": req.params.id }).populate("sender").populate("recipient")
         .then( data => {
             res.status(200).send({ success: true, 'requests': data })
         })

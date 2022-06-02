@@ -15,6 +15,8 @@ router.route('/co_supervisorApproves/:id').put(studentGroupController.co_supervi
 
 router.route('/panelApproves/:id').put(studentGroupController.panelApproves)
 
+router.route('/user/:id').get(studentGroupController.getStudentGroupByUserID)
+
 export default router;
 
 

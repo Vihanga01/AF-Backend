@@ -137,4 +137,22 @@ const panelApproves = async(req, res) => {
     }
 }
 
-export default { createStudentGroup, getStudentGroupByID, registerTopic, supervisorApproves, co_supervisorApproves, panelApproves };
+const getStudentGroupByUserID = async(req, res) => {
+
+    if(req.params && req.params.id){
+        await Request.find({ "students": req.params.id }).populate("students").populate("supervisor").populate("co_supervisor")
+        .populate("attachments").populate("panel")
+        .then( data => {
+            res.status(200).send({ success: true, 'studentGroup': data })
+        })
+        .catch( (error) => {
+            res.status(500).send({ success: false, 'message': error })
+        } )
+    }
+    else{
+        res.status(200).send({ success: false, 'message': "No data found" })
+    }
+
+}
+
+export default { createStudentGroup, getStudentGroupByID, registerTopic, supervisorApproves, co_supervisorApproves, panelApproves, getStudentGroupByUserID };

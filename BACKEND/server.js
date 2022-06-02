@@ -7,6 +7,10 @@ import dotenv from "dotenv";
 //Vihanga routes
 import userRoutes from "./routes/userRoutes.js";
 
+//Lukshithan routes
+import studentGroupRoutes from "./routes/studentGroupRoutes.js";
+import requestRoutes from "./routes/requestRoutes.js"
+
 const app = express();
 dotenv.config();
 
@@ -33,6 +37,10 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRoutes);
+
+app.use("/studentGroup", studentGroupRoutes);
+
+app.use("/request", requestRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number: ${PORT}`);
